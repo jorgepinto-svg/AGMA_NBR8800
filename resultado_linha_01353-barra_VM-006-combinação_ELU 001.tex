@@ -1,0 +1,1086 @@
+
+    
+\documentclass[11pt]{article}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{float}
+\usepackage[portuguese]{babel}
+\usepackage{geometry}
+\usepackage{titlesec}
+
+\geometry{
+    paperwidth=210mm,        % Largura da página (A4)
+    paperheight=297mm,       % Altura da página (A4)
+    left=2cm,                % Margem esquerda
+    right=2cm,               % Margem direita
+    top=.1cm,                 % Margem superior
+    bottom=1cm,              % Margem inferior
+    heightrounded,           % Ajusta a altura da página para ser um número inteiro de linhas
+    includehead,             % Inclui o cabeçalho no cálculo da altura total da página
+    includefoot              % Inclui o rodapé no cálculo da altura total da página
+}
+
+\setcounter{secnumdepth}{5}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\titleformat{\subparagraph}
+{\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
+\titlespacing*{\subparagraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+
+
+
+\begin{document}
+
+\tableofcontents % Gera o índice automaticamente
+
+\section{Introdução}
+Esta memória de cálculo tem como objetivo demonstrar a verificação completa do perfil metálico chamado \textit{VM-006}, a qual foi 
+adotada a seção \textit{W410X60}, localizado a $7.5m$ a partir do ponto inicial da barra, seguindo as premissas estabelecidas na norma NBR8800:2024 
+(Projeto de estruturas de aço e de estruturas mistas de aço e concreto de edificações).
+\\
+
+
+
+\section{Documentos de Referência}
+Os documentos de referência utilizados para elaboração desta memória são:\\
+NBR8800:2024 - Projeto de estruturas de aço e de estruturas mistas de aço e concreto de edificações;\\
+NBR6120:2019 - Ações para o cálculo de estruturas de edificações;\\
+NBR6123:2023 - Forças devidas ao vento em edificações.\\
+
+
+
+
+
+\section{Propriedades dos Perfil}
+\subsection{Propriedades Geométricas}
+As dimensões do perfil são apresentadas nesta seção a seguir:
+\begin{table}[H]
+\def\arraystretch{2}
+\caption{Dimensões do perfil - propriedades geométricas da seção}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c|}
+    \hline
+        $Barra$   &   $Perfil$    &  $h (mm)$   &  $b_f (mm)$   &   $t_f (mm)$   &  $t_w (mm)$   &   $A (cm^2)$  \\ \hline            
+        VM-006   & W410X60 &   406.0   &   178.0     &    12.8     &    7.8    &    76.1  \\ \hline 
+\end{tabular}
+\end{center}
+\end{table}
+
+Sendo:\\
+$h$ é a altura do perfil;\\
+$b_f$ é a largura do perfil;\\
+$t_f$ é a espessura da mesa;\\
+$t_w$ é a espessura da alma;\\
+$A$ é a área do perfil.
+\\
+
+
+
+\subsection{Propriedades Mecânicas}
+As caracterísitcas geométricas do perfil estão disponíveis na tabelas a seguir:
+
+\begin{table}[H]
+\def\arraystretch{1.3}
+\caption{Dimensões do perfil - propriedades geométricas da seção (parte 1/2)}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c|}
+\hline
+Barra   &   Perfil      &  $J (cm^4)$       &  $I_x (cm^4)$  &  $I_y (cm^4)$ & $A_{w,y} (cm^2)$  & $A_{w,x} (cm^2)$     \\ \hline            
+VM-006 & W410X60 &   33.0  &     21600.0   &   1200.0    &   31.5        &   38.0           \\ \hline 
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[H]
+\def\arraystretch{1.3}
+\caption{Dimensões do perfil - propriedades geométricas da seção (parte 2/2)}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c|c|}
+\hline
+Barra   &    Perfil     &    $W_x (cm^3)$    &  $W_y (cm^3)$    &   $Z_x (cm^3)$    &    $Z_y (cm^3)$   &   $r_x (mm)$   &   $r_y (mm)$    \\ \hline            
+VM-006 & W410X60 &      1064.0      &     135.0     &     1200.0      &      208.0     &    39.71    &     168.475    \\ \hline 
+\end{tabular}
+\end{center}
+\end{table}
+
+Sendo:\\
+$J$ é a constante de torção;\\
+$I_x$ é o momento de inércia no eixo de maior inércia;\\
+$I_y$ é o momento de inércia no eixo de menor Inércia;\\
+$A_{w,y}$ é a área efetiva de cisalhamento na direção vertical;\\
+$A_{w,x}$ é a área efetiva de cisalhamento na direção horizontal;\\
+$W_x$ é o módulo de resistência elástico no eixo de maior inércia;\\
+$W_y$ é o módulo de resistência elástico no eixo de menor inércia;\\
+$Z_x$ é o módulo de resistência plástico no eixo de maior inércia;\\
+$Z_y$ é o módulo de resistência plástico no eixo de menor inércia;\\
+$r_x$ é o raio de giração em torno do eixo de maior inércia;\\
+$r_y$ é o raio de giração em torno do eixo de menor inércia.\\
+
+
+
+O raio de giração polar da seção bruta em relação ao centro de cisalhamento, calculado conforme a seguinte equação: 
+
+$$r_0 =\sqrt{{{r_x}^2 + {r_y}^2}} = \sqrt{{0.0397^2} + {0.1685^2}} = 173.1mm$$
+\\
+
+Constante de empenamento da seção transversal, calculado conforme item D.2.8.a) da NBR8800:2024
+
+$$C_w = \frac{I_y(d-t_f)^2}{4} = \frac{1200.0*10^{-8} * (0.406-0.0128)^2}{4} = 4.63819*10^{-7}m^6$$
+\\
+
+
+
+\section{Esforços Solicitantes do Perfil}
+Para determinação dos esforços internos nas barras da estrutura, foi utilizado o software SAP2000 v.23.3.1, 
+para modelagem, lançamento de carregamento e análise da estrutura. O software SAP2000 é um programa de análise
+estrutural desenvolvido pela Computers and Structures, Inc. (CSI), que é amplamente utilizado para modelagem, 
+análise e dimensionamento de estruturas com foco em engenharia civil (concreto e metálica). 
+
+Para esta análise foi escolhido o ponto localizado a $7.5m$ do ponto inicial da barra \textit{VM-006}. Ao avaliar
+todas as combinações de esforços que esta barra esta submetida, a combinação \textit{ELU 001} é a que impõe os maiores 
+esforços internos sobre a seção. A seguir são apresentando os esforços internos que foram considerado na verificação do perfil:
+
+\begin{table}[H]
+    \def\arraystretch{1.3}
+    \caption{Esforçco Solicitantes Internos na Barra}
+    \begin{center}
+    \begin{tabular}{|p{1cm}||p{2.5cm}|p{1.1cm}|p{1.1cm}|p{1.1cm}|p{1.1cm}|p{1.1cm}|p{1.1cm}|}
+        \hline
+            Barra   & Combinação      & P  $(kN)$   &   V2 $(kN)$  &   V3 $(kN)$  &    T $(kN.m)$ &	   M2 $(kN.m)$   &     M3 $(kN.m)$   \\ \hline            
+            VM-006 & ELU 001    &      -0.26    &      134.09    &      0.02    &       0.0     &       -0.09       &       -194.24        \\ \hline 
+    \end{tabular}
+    \end{center}
+    \end{table}
+
+Sendo: \\
+$P$ é a Força Axial na mesma direção do eixo do perfil;\\
+$V2$ é a Força Cortante na mesma direção da alma do perfil;\\
+$V3$ é a Força Cortante na mesma direção das mesas do perfil;\\
+$T$ é o Momentor Torsor na mesma direção do eixo do perfil;\\
+$M2$ é o Momento Fletor que atua no eixo de maior inércia;\\ 
+$M3$ é o Momento Flexor que atua no eixo de menor inércia.\\
+
+
+
+
+\section{Esforços Resistentes do Perfil}
+Tendo em vista que o esforço axial solicitante do perfil, no ponto escolhido para análise, é um esforço de compressão ou tração, 
+então a verificação adotada é aquela descrita no item 5.3 da Norma NBR8800:2024. 
+
+
+
+\subsection{Força Axial de Compressão Resistente}
+Para barra comprimidas, deve ser atendida a condição:
+
+$$N_{c,Sd} \leq N_{c,Rd}$$
+
+Onde:\\
+$N_{c,Sd}$ é a força axial de compressão solicitante de cálculo;\\
+$N_{c,Rd}$ é a força axial de compressão resistente de cálculo, determinada conforme 5.3.2.\\
+
+Para se determinar o $N_{c,Rd}$, antes é necessário saber qual é o valor da força axial de flambagem ($N_e$), que será visto no próximo item desta memória.\\
+
+
+
+\subsubsection{Força Axial de Flambagem}
+A força axial de flambagem de uma barra com seção transversal duplamente simétrica ou simétrica em relação a um ponto é o menor dos três valores dados a seguir:\\
+
+a) para flambagem por flexão em relação ao eixo central de inércia x da seção transversal:
+
+$$N_{ex} = \frac{{\pi ^2}.E.I_x}{{L_x}^2} = \frac{3.1415^2 * (199.948*10^9) * (21600.0*10^{-8}) }{({1*15})^2} = 1894.4 kN$$
+\\
+
+b) para flambagem por flexão em relação ao eixo central de inércia y da seção transversal:
+
+$$N_{ey} = \frac{{\pi ^2}.E.I_y}{{L_y}^2} = \frac{3.1415^2 * (199.948*10^9) * (1200.0*10^{-8}) }{({0.5*15})^2} = 421.0 kN$$
+\\
+
+
+c) para flambagem por torção em relação ao eixo longitudinal z (que passa pelo centro de cisalhamento):
+
+$$N_{ez} = \frac{1}{r_0^2}{\left[\frac{{\pi ^2}.E.C_w}{L_z^2} + G.J \right]} = $$
+$$\frac{1}{(173.1*10^{-3})^2} {\left[\frac{{3.1415 ^2} * (199.948*10^9) * (4.63819*10^{-7})}{({0.5*15})^2} + (76.9031*10^6) * (33.0*10^{-8}) \right]} = 1390.1 kN$$
+\\
+
+Onde:
+
+$L_x$ é o comprimento destravado associado à flexão em relação ao eixo $x$;
+
+$I_x$ é o momento de inércia da seção transversal em relação ao eixo $x$;
+
+$L_y$ é o comprimento destravado associado à flexão em relação ao eixo $y$;
+
+$I_y$ é o momento de inércia da seção transversal em relação ao eixo $y$;
+
+$L_z$ é o comprimento destravado associado à torção;
+
+$E$ é o módulo de elasticidade do aço;
+
+$C_w$ é a constante de empenamento da seção transversal;
+
+$G$ é o módulo de elasticidade transversal do aço;
+
+$J$ é a constante de torção da seção transversal;
+
+$r_0$ é o raio de giração polar da seção bruta em relação ao centro de cisalhamento, conforme previamente detalhado. 
+\\
+
+Como o menor valor entre $N_{ex}$, $N_{ey}$ e $N_{ez}$ é $421.0$, então $N_e = 421.0 kN$.\\
+
+Com o valor de $N_e$ determinado, deve-se voltar para o item 5.3.2 da NBR8800:2024 para determinar o Índice de
+esbeltez reduzido ($\lambda_0$), Conforme item  em 5.3.3.2.
+
+ 
+
+\subsubsection{Índice de Esbeltez Reduzido ($\lambda_0$) }
+
+O índice de esbeltez reduzido ($\lambda_0$) é calculado pela seguinte equação:
+
+$$\lambda_0 = \sqrt{\frac{A_g.f_y}{N_e}} = \sqrt{\frac{0.0076 * (344.7379*10^6) }{421.0*10^3 }} = 2.496$$
+
+Com $\lambda_0$ determinado, deve-se calcular o valor do fator de redução associado à resistência à compressão ($\chi$).\\
+
+
+
+\subsubsection{Fator de Redução Associado à Resistência à Compressão ($\chi$)}
+
+O fator de redução associado à resistência à compressão ($\chi$) é calculado pela seguinte equação:\\
+
+\( \rightarrow  \) para $\lambda_0 \leq 1.5$ : 
+$$\chi = 0.658^{{\lambda_0}^2}$$ 
+\\
+
+\( \rightarrow  \) para $\lambda_0 \textgreater 1.5$ : 
+$$\chi=\frac{0.877}{{\lambda_0}^2}$$
+\\
+
+   
+
+Como $\lambda_0 \textgreater 1.5$, então :
+$$\chi=\frac{0.877}{{\lambda_0}^2} = \frac{0.877}{2.496^2} = 0.1407$$
+\\
+
+
+Com $\chi$ determinado, o último valor a ser determinado é área efetiva da seção transversal da barra ($A_{ef}$), conforme item 5.3.4 da NBR8800:2024.\\
+
+
+
+\subsubsection{Área Efetiva da Seção Transversal da Barra ($A_{ef}$)}
+Os elementos que fazem parte das seções transversais usuais para efeito de flambagem local, 
+são classificados em:
+
+\( \rightarrow  \) (AA) duas bordas longitudinais apoiadas como, por exemplo, almas de seções I, H ou U; e
+
+\( \rightarrow  \) (AL) uma borda longitudinal apoiada e outra livre como, por exemplo, mesas de seções I, H, T ou U laminadas.
+\\
+
+A área efetiva da seção transversal ($A_{ef}$) deve ser considerada igual à área bruta ($A_g$) se 
+todos os elementos componentes da seção transversal (AA ou AL) possuírem razão entre largura
+e espessura ($b/t$) igual ou inferior ao valor $((b/t)_{lim}/\sqrt{\chi})$.
+\\
+
+Vale ressaltar que:
+
+\( \rightarrow  \) para elementos do tipo AA, ($b/t$) é a razão entre distância entre mesas do perfil e espessura da alma ($(h-2.t_f)/t_w$);
+
+\( \rightarrow  \) para elementos do tipo AL, ($b/t$) é a razão entre meia largura do perfil e espessura da mesa ($0.5b/t_f$).
+\\
+
+Como a \textbf{largura efetiva da alma} é em função da esbeltez da chapa que compõem a alma, deve-se verificar
+dentro das faixas em que este valor está trabalhando. A partir disto, aplicar uma das duas expressões a seguir para 
+o valor de \textbf{largura efetiva da alma}:\\
+                                     
+\( \rightarrow  \) para $\displaystyle \frac{(h-2.t_f)}{t_w} \leq \frac{(b/t)_{lim}}{\sqrt{\chi}}$: $b_{ef,alma} = (h-2.t_f)$ ou 
+\\[10pt]
+
+\( \rightarrow  \) para $\displaystyle \frac{(h-2.t_f)}{t_w} \textgreater \frac{(b/t)_{lim}}{\sqrt{\chi}}$: $\displaystyle  b_{ef,alma}=(h-2.t_f)\left(1-0.18{\sqrt{\frac{\sigma_{el}}{\chi f_y}}}\right) \sqrt{\frac{\sigma_{el}}{\chi f_y}}$; 
+\\[10pt]
+
+{sendo $\displaystyle \sigma_{el} = \left(1.31{\frac{{(b/t)_{lim}}}{(h-2.t_f)/t_w}}\right)^2 f_y$}
+\\[25pt]
+
+
+
+O valor limite para esbeltez da alma é:\\
+
+$$(b/t)_{lim} = 1.49\sqrt{\frac{E}{f_y}} = 1.49\sqrt{\frac{ 199.948*10^9 }{ 344.7379*10^6 }} = 35.9$$
+
+\vspace{0.3cm}
+
+A relação entre esbeltez da alma e o valor limite é:\\
+\\
+\centerline {$\displaystyle \frac{(h-2.t_f)}{t_w} \leq \frac{(b/t)_{lim}}{\sqrt{\chi}}$ \( \Rightarrow  \) 
+$\displaystyle \frac{(0.406-2*0.0128)}{0.0077} \leq \frac{35.9}{\sqrt{0.1407}}$}
+
+\vspace{0.3cm}
+
+Como a esbeltez da alma é menor ou igual do que o valor limite, a \textbf{largura efetiva da alma} é dada por:\\
+
+$$b_{ef,alma} = (h-2.t_f) = (0.406 - 2*0.0128) = 0.3804m$$
+
+\vspace{0.3cm}
+
+
+   
+
+Como a \textbf{largura efetiva da mesa} é em função da esbeltez de meia chapa que compõem a mesa, deve-se verificar
+dentro das faixas em que este valor está trabalhando. A partir disto, aplicar uma das duas expressões a seguir para 
+o valor de \textbf{largura efetiva da mesa}:\\
+                                     
+\( \rightarrow  \) para $\displaystyle \frac{0.5b}{t_f} \leq \frac{(b/t)_{lim}}{\sqrt{\chi}}$: $b_{ef} = 0.5b$ ou
+\\[10pt]
+                                     
+ \( \rightarrow  \) para $\displaystyle \frac{0.5b}{t_f} \textgreater \frac{(b/t)_{lim}}{\sqrt{\chi}}$: $\displaystyle  b_{ef}=0.5b\left(1-0.22{\sqrt{\frac{\sigma_{el}}{\chi f_y}}}\right) \sqrt{\frac{\sigma_{el}}{\chi f_y}}$; 
+\\[10pt]
+
+{sendo $\displaystyle \sigma_{el} = \left(1.49{\frac{{(b/t)_{lim}}}{(0.5b)/t_f}}\right)^2 f_y$}
+\\[25pt]
+
+
+
+ 
+
+   
+
+ 
+
+   
+
+O valor limite para esbeltez da mesa é:\\
+
+$$(b/t)_{lim} = 0.56\sqrt{\frac{E}{f_y}} = 0.56\sqrt{\frac{199.948*10^9 }{344.7379*10^6 }} = 13.5$$
+
+\vspace{0.3cm}
+
+
+A relação entre esbeltez da mesa e o valor limite é:\\
+
+\centerline {$\displaystyle \frac{(0.5b)}{t_f} \leq \frac{(b/t)_{lim}}{\sqrt{\chi}}$ \( \Rightarrow  \) 
+$\displaystyle \frac{(0.5*0.178)}{0.0128} \leq \frac{13.5}{\sqrt{0.1407}}$}
+
+\vspace{.3cm}
+
+Como a esbeltez da mesa é menor ou igual do que o valor limite, a \textbf{largura efetiva da mesa} é dada por:\\
+$$b_{ef,mesa} = (0.5b) = (0.5*0.178) = 0.089m$$
+
+\vspace{0.3cm}
+
+   
+
+Com as larguras efetivas da alma e das mesas, basta determinar a Área Efetiva da Seção Transversal da Barra ($A_{ef}$) como sendo o somatório da multiplicação 
+das larguras efetiva pela as respectivas espessuras. Sendo assim:
+
+$$A_{ef} = b_{ef,alma}.t_w + 4.(b_{ef,mesa}.t_f) = 0.3804*0.0077 + 4*(0.089*0.0128) = 75.0*10^{-4} m^2$$
+\\
+
+
+
+\subsubsection{Força Axial de Compressão Resistente}
+Ao final, com todos os parâmetros necessários definidos, basta aplicar a equação do item 5.3.2 da NBR8800:2024. 
+A força axial de compressão resistente de cálculo de uma barra, associada aos estados-limite
+últimos de instabilidade por flexão, por torção ou flexo-torção, e de instabilidade local, deve ser
+determinada pela equação:
+
+$$N_{c,Rd} = \frac{\chi A_{ef} f_y}{\gamma_{a1}} = \frac{0.1407*(75.0*10^{-4})*(344.7379*10^6) }{1.1} = 331.0kN $$
+\\[15pt]
+
+   
+
+ATENÇÃO:\\
+Deve ser feita uma verificação mais detalhada caso o ponto selecionado seja uma região de ligação.
+\\
+\\
+\\
+
+
+
+\subsection{Momento Fletor em Relação ao Eixo de Maior Inércia}
+Para verificação do momento fletor resistente segundo a NBR8800:2024, deve-se seguir o procedimento estabelecido no Anexo D . Segundo este Anexo, 
+o momento fletor resistente de cálculo nos estado-limite FLT, FLM e FLA, 
+para as seções I e H com dois eixos de simetria e não sujeitas a momento de torção e fletida em relação aos dois eixos de inércia principais, 
+é calculado conforme as condições a seguir: 
+\\
+\\
+a) para $\lambda \leq \lambda_p$:
+$$M_{Rd} = \frac{1}{\gamma_{a1}}M_{pl}$$
+\\
+\\
+b) para $\lambda_p \textless \lambda \leq \lambda_r$:
+$$M_{Rd} = \frac{1}{\gamma_{a1}} \left( M_{pl} - (M_{pl} - M_r) \frac{\lambda - \lambda_p}{\lambda_r - \lambda_p} \right)$$ 
+\\
+\\
+c) para $\lambda \textgreater \lambda_r$:
+$$M_{Rd} = \frac{1}{\gamma_{a1}}M_{cr}$$ \\
+Sendo:\\
+FLA flambagem local da alma;\\
+FLM flambagem local da mesa comprimida;\\
+FLT flambagem lateral com torção;\\
+$M_{Rd}$ é o Momento Fletor Resistente de Cálculo;\\
+$M_{pl}$ é o Momento Fletor de Plastificação da Seção Transversal, igual ao produto do 
+módulo de resistência plástico ($Z$) pela resistência ao escoamento do aço ($f_y$);\\
+$M_r$ é o Momento Fletor correspondente ao início do escoamento, incluindo a influência 
+das tensões residuais em alguns casos;\\
+$\lambda$ é o parâmetro de esbeltez;\\
+$\lambda_p$ é o parâmetro de esbeltez correspondente à plastificação;\\
+$\lambda_r$ é o parâmetro de esbeltez correspondente ao início do escoamento.\\
+
+
+
+\subsubsection{Flambagem Lateral com Torção (FLT)}
+
+Conforme tabela D.1 da NBR8800:2024, é preciso determinar os seguintes parâmetros:
+Momento Fletor correspondente ao início do escoamento,
+Momento Fletor Crítico,
+Parâmetro de Esbeltez, 
+Parâmetro de Esbeltez correspondente à Plastificação, 
+Parâmetro de Esbeltez correspondente ao início do Escoamento e 
+Momento Fletor de Plastificação da Seção Transversal.
+
+
+
+
+
+\paragraph{Momento Fletor correspondente ao início do escoamento}
+A expressão que determina o Momento Fletor correspondente ao início do escoamento:\\
+
+$$M_r = (f_y-\sigma_r).W_x$$\\ 
+Sendo que a tensão residual de compressão nas mesas, $\sigma_r$, deve ser considerada igual 
+a 30\% da resistência ao escoamento do aço utilizado.
+$$M_r = (f_y-\sigma_r).W_x = 0.7 * (344.7379*10^6) * (1064.0*10^{-6}) = 256.8kN.m$$\\ 
+\\
+
+
+
+
+
+\paragraph{Momento Fletor Crítico}
+\\
+A expressão que determina o Momento Fletor Crítico:
+
+
+$$M_{cr} = \frac{C_b.\pi^2.E.I_x}{L_b^2}\sqrt{\frac{C_w}{I_x}(1+0.039.\frac{JL_b^2}{C_w})}$$\\
+
+Sendo que:\\
+$C_b$ é o fator de modificação para diagrama de momento fletor não uniforme, que pode ser calculado conforme 
+itens 5.4.2.3, 5.4.2.4 e 5.4.2.5 da NBR8800:2024. Contudo, para este dimensionamento, será adotado igual a 1.\\
+$C_w$ é a constante de empenamento da seção transversal. Para perfis I e H, o cálculo de é conforme a expressão:
+
+$$C_w = \frac{I_y(d-t_f)^2}{4} = \frac{ (1200.0*10^{-8}) * (0.406-0.0128)^2 }{4} = 4.63819*10^{-7}m^6$$\\
+
+Assim, aplicando os valores de $C_b$ e $C_w$ obtidos, têm-se:
+
+$$M_{cr} = \frac{C_b. \pi^2.E.I_x}{L_b^2}\sqrt{\frac{C_w}{I_x}(1+0.039.\frac{JL_b^2}{C_w})} = $$
+$$M_{cr} = \frac{1 * 3.1415^2 * (199.948*10^9) * (21600.0*10^{-8}) }{ (1*15)^2}*\sqrt{\frac{4.63819*10^{-7}}{21600.0*10^{-8}}*(1 + 0.039 * \frac{(33.0*10^{-8})*(1*15)^2}{4.63819*10^{-7}})}$$\\
+$$M_{cr} = 236.3kN.m$$\\
+\\
+
+
+
+
+\paragraph{Parâmetro de Esbeltez}
+\\
+A expressão que determina o Parâmetro de Esbeltez:
+
+$$\lambda = \frac{L_b}{r_x} = \frac{1*15}{0.1685} = 89.03$$\\
+\\
+
+
+
+\paragraph{Parâmetro de Esbeltez correspondente à Plastificação}
+\\
+A expressão que determina o Parâmetro de Esbeltez correspondente à Plastificação:
+
+$$\lambda_p = 1.76\sqrt{\frac{E}{f_y}} = 1.76*\sqrt{\frac{ 199.948*10^9 }{ 344.7379*10^6 }} = 42.39 $$\\
+\\
+
+
+
+\paragraph{Parâmetro de Esbeltez correspondente ao início do Escoamento}
+\\
+A expressão que determina o Parâmetro de Esbeltez correspondente ao início do Escoamento:
+
+$$\lambda_r = \frac{1.38.C_b.\sqrt{I_x.J}}{r_x.J.\beta_1}\sqrt{1+\sqrt{1+\frac{27.C_w.\beta_1^2}{C_b^2.I_x}}}$$\\
+
+
+Sendo que:\\
+$$\beta_1 = \frac{(f_y-\sigma_r).W_x}{E.J} = \frac{ 0.7 * (344.7379*10^6) * (1064.0*10^{-6}) }{ (199.948*10^9) * (33.0*10^{-8}) } = 3.891$$\\
+
+Assim, aplicando o valor de $\beta_1$ obtido, têm-se:
+
+$$\lambda_r = \frac{1.38 * 1*\sqrt{ (21600.0*10^{-8}) * (33.0*10^{-8}) } }{ 0.1685 * (33.0*10^{-8}) * 3.891 }. \sqrt{ 1 + \sqrt{ 1 + \frac{ 27 * (4.63819*10^{-7}) * 3.891^2 }{ 1^2 * (21600.0*10^{-8}) }}} = 82.91 $$\\
+\\
+
+
+
+\paragraph{Momento Fletor de Plastificação da Seção Transversal}
+\\
+A expressão que determina o Momento Fletor de Plastificação da Seção Transversal:
+
+
+$$M_{pl}= Z_x.f_y = (1200.0*10^{-6}) * (344.7379*10^6) = 413.7kN.m$$
+
+
+    
+
+\paragraph{Momento Fletor Resistente de Cálculo segundo FLT}
+\\
+Como: $\lambda = 89.03$ ; $\lambda_p = 42.39$ e $\lambda_r = 82.91$\\
+Então $\lambda \textgreater \lambda_r$.
+\\
+Sendo assim:
+$$M_{Rd} = \frac{1}{\gamma_{a1}} M_{cr} = \frac{1}{1.1} * 236.3 = 214.8kN.m $$
+\\
+
+\vspace{1cm}
+
+
+
+\subsubsection{Flambagem Local da Mesa Comprimida (FLM)}
+
+Conforme tabela D.1 da NBR8800:2024, é preciso determinar os seguintes parâmetros: 
+Momento Fletor correspondente ao início do escoamento, 
+Momento Fletor Crítico,
+Parâmetro de Esbeltez, 
+Parâmetro de Esbeltez correspondente à Plastificação,
+Parâmetro de Esbeltez correspondente ao início do Escoamento e 
+Momento Fletor de Plastificação da Seção Transversal.
+\\
+\\
+
+
+
+\paragraph{Momento Fletor correspondente ao início do escoamento}
+\\
+A expressão que determina o Momento Fletor correspondente ao início do escoamento:
+
+
+$$M_r = (f_y-\sigma_r).W_x$$\\ 
+Sendo que a tensão residual de compressão nas mesas, $\sigma_r$, deve ser considerada igual 
+a 30\% da resistência ao escoamento do aço utilizado.
+$$M_r = (f_y-\sigma_r).W_x = 0.7 * (344.7379*10^6) * (1064.0*10^{-6}) = 256.8kN.m$$\\ 
+\\
+
+
+
+\paragraph{Momento Fletor Crítico}
+
+$$M_{cr} = \frac{0.69E}{\lambda^2}W_c$$
+\\
+\\
+Onde:\\
+$W_c$ é o módulo de resistência elástico do lado comprimido da seção, relativo ao eixo de flexão;\\
+$\lambda=b/t$ é, conforme item D.2.8-h) da NBR8800:2024, a relação entre largura e espessura aplicável à mesa do perfil.
+\\
+
+Para o calculo de $W_c$, têm-se a expressão:
+
+$$W_c = \frac{\frac{b_f.t_f^3}{12} + (b_f.t_f).(\frac{h}{2}-\frac{t_f}{2})^2 + \frac{t_w.(\frac{h}{2} - t_f)^3}{3}}{\frac{h}{2}}$$
+
+$$W_c = \frac{\frac{0.178*0.0128^3}{12} + (0.178*0.0128).(\frac{0.406}{2}-\frac{0.0128}{2})^2 + \frac{0.0077.(\frac{0.406}{2} - 0.0128)^3}{3}}{\frac{0.406}{2}} = 530.7*10^{-6}m^3 $$
+
+
+Assim, aplicando os valores de $W_c$ e $\lambda$ obtidos, têm-se:
+
+$$M_{cr} = \frac{0.69.E}{\lambda^2}W_c = \frac{ 0.69 * (199.948*10^9) }{ (\frac{ 0.178/2 }{ 0.0128 })^2}*(530.7*10^{-6}) = 1514.4kN.m$$\\
+\\
+
+
+
+
+\paragraph{Parâmetro de Esbeltez}
+\\
+A expressão que determina o Parâmetro de Esbeltez:
+
+$$\lambda = \frac{b}{t} = \frac{0.178/2}{0.0128} = 6.95$$\\
+\\
+
+
+
+
+\paragraph{Parâmetro de Esbeltez correspondente à Plastificação}
+\\
+A expressão que determina o Parâmetro de Esbeltez correspondente à Plastificação:
+
+$$\lambda_p = 0.38\sqrt{\frac{E}{f_y}} = 0.38 * \sqrt{\frac{ (199.948*10^9) }{ (344.7379*10^6) }} = 9.15 $$\\
+\\
+
+
+
+
+\paragraph{Parâmetro de Esbeltez correspondente ao início do Escoamento}
+\\
+A expressão que determina o Parâmetro de Esbeltez correspondente ao início do Escoamento:
+
+$$\lambda_r = 0.83 \sqrt{\frac{E}{(f_y - \sigma_r)}} = 0.83 * \sqrt{\frac{ (199.948*10^9) }{ 0.7 * (344.7379*10^6) }} = 23.89$$\\
+\\
+
+
+
+
+\paragraph{Momento Fletor de Plastificação da Seção Transversal}
+\\
+A expressão que determina o Momento Fletor de Plastificação da Seção Transversal:
+
+$$M_{pl}= Z.f_y = (1200.0*10^{-6}) * (344.7379*10^6) = 413.7kN.m$$\\
+\\
+
+
+
+
+\paragraph{Momento Fletor Resistente de Cálculo segundo FLM}
+\\
+Como: $\lambda = 6.95$; $\lambda_p = 9.15$ e $\lambda_r = 23.89$.\\
+Então $\lambda \leq \lambda_p$.
+\\
+Sendo assim: 
+$$M_{Rd} = \frac{1}{\gamma_{a1}}M_{pl} = \frac{1}{1.1}*413.7 = 376.1kN.m$$
+\\
+
+      
+
+\subsubsection{Flambagem Local da Alma (FLA)}
+
+Conforme tabela D.1 da NBR8800:2024, é preciso determinar os seguintes parâmetros:
+Momento Fletor correspondente ao início do escoamento,
+Momento Fletor Crítico,
+Parâmetro de Esbeltez,
+Parâmetro de Esbeltez correspondente à Plastificação,
+Parâmetro de Esbeltez correspondente ao início do Escoamento e
+Momento Fletor de Plastificação da Seção Transversal.
+\\
+\\
+
+
+
+\paragraph{Momento Fletor correspondente ao início do escoamento}
+\\
+A expressão que determina o Momento Fletor correspondente ao início do escoamento:
+
+
+$$M_r = f_y.W_x = (344.7379*10^6) * (1064.0*10^{-6}) = 366.8kN.m$$\\ 
+\\
+
+
+
+\paragraph{Momento Fletor Crítico}
+\\
+A expressão que determina o Momento Fletor Crítico:
+
+É necessário o uso do Anexo E da NBR8800:2024 para determinação do Momento Fletor Crítico de vigas de alma Esbelta. 
+Como esta memória se limita a verificação de perfil laminados, que não se enquadra neste caso, então é dispensada a análise segundo o Anexo E.\\
+\\
+
+
+
+\paragraph{Parâmetro de Esbeltez}
+\\
+A expressão que determina o Parâmetro de Esbeltez:
+
+$$\lambda = \frac{h}{t_w} = \frac{0.406-0.0128-0.0128}{0.0077} = 49.08$$\\
+\\
+Onde:\\
+$h$ é igual a esse valor menos os dois raios de concordância entre a mesa e a alma nos perfis laminados;\\
+$t_w$ é a espessura da alma.\\
+\\
+
+
+
+\paragraph{Parâmetro de Esbeltez correspondente à Plastificação}
+\\
+A expressão que determina o Parâmetro de Esbeltez correspondente à Plastificação:
+
+
+$$\lambda_p = 3.76\sqrt{\frac{E}{f_y}} = 3.76 * \sqrt{\frac{ 199.948*10^9 }{ 344.7379*10^6 }} = 90.55 $$\\
+\\
+
+
+
+\paragraph{Parâmetro de Esbeltez correspondente ao início do Escoamento}
+\\
+A expressão que determina o Parâmetro de Esbeltez correspondente ao início do Escoamento:
+
+$$\lambda_r = 5.7 \sqrt{\frac{E}{f_y}} = 5.7 * \sqrt{\frac{ 199.948*10^9 }{ 344.7379*10^6 }} = 137.27$$\\
+\\
+
+
+
+\paragraph{Momento Fletor de Plastificação da Seção Transversal}
+\\
+A expressão que determina o Momento Fletor de Plastificação da Seção Transversal:
+
+$$M_{pl}= Z.f_y = (1200.0*10^{-6}) * (344.7379*10^6) = 413.7kN.m $$\\
+\\
+
+
+
+\paragraph{Momento Fletor Resistente de Cálculo segundo FLA}
+\\
+Como: $\lambda = 49.08$; $\lambda_p = 90.55$ e $\lambda_r = 137.27$.\\
+Então $\lambda \leq \lambda_p$.
+\\
+Sendo assim: 
+$$M_{Rd} = \frac{1}{\gamma_{a1}}M_{pl} = \frac{1}{1.1}*413.7 = 376.1kN.m$$
+\\
+
+      
+
+\subsubsection{Momento Fletor Resistente de Cálculo}
+O Momento Fletor Resistente de Cálculo é o menor valor entre:\\
+a) Momento Fletor Resistente de Cálculo segundo FLT;\\
+b) Momento Fletor Resistente de Cálculo segundo FLM;\\
+c) Momento Fletor Resistente de Cálculo segundo FLA.\\
+
+Como os valores são: \\
+$214.8 kN.m$ para Momento Fletor Resistente de Cálculo segundo FLT;\\
+$376.1 kN.m$ para Momento Fletor Resistente de Cálculo segundo FLM;\\
+$376.1 kN.m$ para Momento Fletor Resistente de Cálculo segundo FLA.\\
+
+
+Então o Momento Fletor Resistente de Cálculo para o eixo de maior inércia é $214.8 kN.m$.\\
+
+
+
+\subsection{Momento Fletor em Relação ao Eixo de Menor Inércia}
+Para verificação do momento fletor resistente segundo a NBR8800:2024, deve-se seguir o procedimento estabelecido no Anexo D.
+Segundo este Anexo, o momento fletor resistente de cálculo nos estado-limite FLM, 
+para as seções I e H com dois eixos de simetria e não sujeitas a momento de torção, 
+fletida em relação aos dois eixos de inércia principais, 
+é calculado conforme as condições a seguir: 
+\\
+\\
+a) para $\gamma \leq \gamma_p$:
+$$M_{Rd} = \frac{1}{\gamma_{a1}}M_{pl}$$
+\\
+\\
+b) para $\lambda_p \textless \lambda \leq \lambda_r$:
+$$M_{Rd} = \frac{1}{\gamma_{a1}} \left( M_{pl} - (M_{pl} - M_r) \frac{\lambda - \lambda_p}{\lambda_r - \lambda_p} \right)$$ 
+\\
+\\
+c) para $\gamma \textgreater \gamma_r$:
+$$M_{Rd} = \frac{1}{\gamma_{a1}}M_{cr}$$ \\
+Sendo:\\
+FLM flambagem local da mesa comprimida;\\
+$M_{Rd}$ é o Momento Fletor Resistente de Cálculo;\\
+$M_{pl}$ é o Momento Fletor de Plastificação da Seção Transversal, igual ao produto do módulo de resistência plástico ($Z$) 
+pela resistência ao escoamento do aço ($f_y$);\\
+$M_r$ é o Momento Fletor correspondente ao início do escoamento, incluindo a influência das tensões residuais em alguns casos;\\
+$\lambda$ é o parâmetro de esbeltez;\\
+$\lambda_p$ é o parâmetro de esbeltez correspondente à plastificação;\\
+$\lambda_r$ é o parâmetro de esbeltez correspondente ao início do escoamento.\\
+
+Vale lembrar que para flexão no eixo de menor inércia, a tabela D.1 não aponta para uma verificação para o FLT, 
+bastando apenas a verificação do FLM e FLA. Como esta memória verifica apenas perfis com seções tipo I e H, é 
+dispensada a verificação do FLA. A verificação do FLA é apenas aplicável para verificação de perfis do tipo U.\\
+
+\vspace{1cm}
+
+
+
+\subsubsection{Flambagem Local da Mesa Comprimida (FLM)}
+
+Conforme tabela D.1 da NBR8800:2024, é preciso determinar os seguintes parâmetros:\\
+\\
+
+
+
+\paragraph{Momento Fletor correspondente ao início do escoamento}
+\\
+A expressão que determina o Momento Fletor correspondente ao início do escoamento:
+
+
+$$M_r = (f_y-\sigma_r).W_y$$\\ 
+Sendo que a tensão residual de compressão nas mesas, $\sigma_r$, deve ser considerada igual 
+a 30\% da resistência ao escoamento do aço utilizado.
+$$M_r = (f_y-\sigma_r).W_y = 0.7 * (344.7379*10^6) * (135.0*10^{-6}) = 32.6kN.m$$\\ 
+\\
+
+
+
+\paragraph{Momento Fletor Crítico}
+\\
+A expressão que determina o Momento Fletor Crítico:
+
+
+$$M_{cr} = \frac{0.69E}{\lambda^2}W_c$$
+\\
+\\
+Onde:\\
+$W_c$ é o módulo de resistência elástico do lado comprimido da seção, relativo ao eixo de flexão;\\
+$\lambda=b/t$ é, conforme item D.2.8-h) da NBR8800:2024, a relação entre largura e espessura aplicável à mesa do perfil.
+\\
+
+Para o calculo de $W_c$, têm-se a expressão:
+
+$$W_c = \frac{t_f.(\frac{b_f}{2})^3}{3} + \frac{(h-2.t_f).(\frac{t_w}{2})^3}{3} + \frac{t_f.(\frac{b_f}{2})^3}{3}
+
+$$W_c = \frac{0.0128*(\frac{0.178}{2})^3}{3} + \frac{(0.406-2*0.0128).(\frac{0.0077}{2})^3}{3} + \frac{0.0128.(\frac{0.178}{2})^3}{3} = 67.7*10^{-6}m^3
+\\
+\\
+
+Assim, aplicando os valores de $W_c$ e $\lambda$ obtidos, têm-se:
+
+$$M_{cr} = \frac{0.69.E}{\lambda^2}W_c = \frac{ 0.69 * (199.948*10^9) }{ ( \frac{ 0.178/2 }{ 0.0128 })^2} * (67.7*10^{-6}) = 193.1kN.m$$\\
+\\
+
+
+
+\paragraph{Parâmetro de Esbeltez}
+\\
+A expressão que determina o Parâmetro de Esbeltez:
+
+
+$$\lambda = \frac{b}{t} = \frac{0.178/2}{0.0128} = 6.95$$\\
+\\
+
+
+
+\paragraph{Parâmetro de Esbeltez correspondente à Plastificação}
+\\
+A expressão que determina o Parâmetro de Esbeltez correspondente à Plastificação:
+
+
+$$\lambda_p = 0.38\sqrt{\frac{E}{f_y}} = 0.38*\sqrt{\frac{ 199.948*10^9 }{ 344.7379*10^6 }} = 9.15 $$\\
+\\
+
+
+
+\paragraph{Parâmetro de Esbeltez correspondente ao início do Escoamento}
+\\
+A expressão que determina o Parâmetro de Esbeltez correspondente ao início do Escoamento:
+
+$$\lambda_r = 0.83 \sqrt{\frac{E}{(f_y - \sigma_r)}} = 0.83 * \sqrt{ \frac{ 199.948*10^9 }{ 0.7 * (344.7379*10^6) }} = 23.89$$\\
+\\
+
+
+
+\paragraph{Momento Fletor de Plastificação da Seção Transversal}
+\\
+A expressão que determina o Momento Fletor de Plastificação da Seção Transversal:
+
+$$M_{pl}= Z.f_y = (208.0*10^{-6}) * (344.7379*10^6) = 71.7kN.m $$\\
+
+
+
+
+\paragraph{Momento Fletor Resistente de Cálculo}
+\\
+Como: $\lambda = 6.95$; $\lambda_p = 9.15$ e $\lambda_r = 23.89$.\\
+Então $\lambda \leq \lambda_p$.
+\\
+Sendo assim: 
+$$M_{Rd} = \frac{1}{\gamma_{a1}}M_{pl} = \frac{1}{1.1}*71.7 = 65.2kN.m$$
+\\
+
+      
+
+\subsection{Força Cortante Resistente de Cálculo}
+
+\subsubsection{Esforços de Cisalhamento na direção paralela a Alma }
+Para seções I e H fletidas em relação ao eixo central de inércia perpendicular à alma
+(eixo de maior momento de inércia), a força cortante resistente de cálculo, VRd, é calculada conforme
+a seguir:\\
+\\
+a) para $\lambda \leq \lambda_p$:
+$$V_{Rd} = \frac{V_pl}{\gamma_{a1}}$$
+\\
+b) para $\lambda_p \textless \lambda \leq \lambda_r$:
+$$V_{Rd} = \frac{\lambda_p . V_{pl}}{\lambda . \gamma_{a1}}$$
+\\
+c) para $\lambda \textgreater \lambda_r$:
+$$V_{Rd} = 1.24 \left( \frac{\lambda_p}{\lambda} \right)^2 \frac{V_{pl}}{\gamma_{a1}}$$
+\\
+Onde:\\
+$\lambda = \frac{h}{t_w}$ é o parâmetro de esbeltez;\\
+$\lambda_p = 1.1\sqrt{\frac{k_vE}{f_y}}$ é o parâmetro de esbeltez correspondente à plastificação;\\
+$\lambda_r = 1.37\sqrt{\frac{k_vE}{f_y}}$ é o parâmetro de esbeltez correspondente ao início do escoamento;\\
+$k_v=5.34$ para almas sem enrijecedores transversais;\\
+$V_{pl} = 0.6.A_w.f_y$ é a força cortante correspondente à plastificação da alma por cisalhamento;\\
+$h$ é a altura da alma considerando o trecho reto das faces da alma, ou seja, é a altura do perfil subtraindo 
+as duas espessuras das mesas e os dois raios de conformação entre a alma e mesas do perfil;\\
+$A_w = d.t_w$ é a área efetiva de cisalhamento;\\
+$d$ é a altura total da seção transversal;\\
+$t_w$ é a espessura da alma.
+
+
+
+$$\lambda = \frac{h}{t_w} = \frac{0.406 - 0.0128 - 0.0128}{0.0077} = 49.08$$
+\\
+$$\lambda_p = 1.1\sqrt{\frac{k_vE}{f_y}} = 1.1 * \sqrt{ \frac{5.34 * (199.948*10^9) }{ 344.7379*10^6 } } = 61.22$$
+\\
+$$\lambda_r = 1.37\sqrt{\frac{k_vE}{f_y}} = 1.37 * \sqrt{ \frac{5.34 * (199.948*10^9) }{ 344.7379*10^6 } } = 76.24$$
+\\
+$$V_{pl} = 0.6.A_w.f_y = 0.6 * (0.406* 0.0077) * (344.7379*10^6) = 650.8 kN$$
+\\
+\\
+
+
+
+Como $\lambda = 49.08$ ; $\lambda_p = 61.22$ e $\lambda_r = 76.24$.
+\\
+Então $\lambda \leq \lambda_p$:
+$$V_{Rd} = \frac{V_pl}{\gamma_{a1}} = \frac{650.8}{1.1} = 591.7kN$$
+\\
+
+      
+
+\subsubsection{Esforços de Cisalhamento na direção paralela a Mesa }
+Para seções I e H fletidas em relação ao eixo central de inércia perpendicular à mesa
+(eixo de menor momento de inércia), a força cortante resistente de cálculo, VRd, é calculada conforme
+a seguir:\\
+\\
+a) para $\lambda \leq \lambda_p$:
+$$V_{Rd} = \frac{V_pl}{\gamma_{a1}}$$
+\\
+b) para $\lambda_p \textless \lambda \leq \lambda_r$:
+$$V_{Rd} = \frac{\lambda_p . V_{pl}}{\lambda . \gamma_{a1}}$$
+\\
+c) para $\lambda \textgreater \lambda_r$:
+$$V_{Rd} = 1.24 \left( \frac{\lambda_p}{\lambda} \right)^2 \frac{V_{pl}}{\gamma_{a1}}$$
+\\
+Onde:\\
+$\lambda = \frac{h}{t_w}$ é o parâmetro de esbeltez;\\
+$\lambda_p = 1.1\sqrt{\frac{k_vE}{f_y}}$ é o parâmetro de esbeltez correspondente à plastificação;\\
+$\lambda_r = 1.37\sqrt{\frac{k_vE}{f_y}}$ é o parâmetro de esbeltez correspondente ao início do escoamento;\\
+$k_v=1,2$ conforme item 5.4.3.5 da NBR8800:2024;\\
+$V_{pl} = 0.6.A_w.f_y$ é a força cortante correspondente à plastificação da alma por cisalhamento;\\
+$h = \frac{b_f}{2}$ é igual à metade da largura das mesas nas seções I e H;\\
+$t_w$ é a espessura da mesa;\\
+$A_w = 2.b_f.t_w$ é a área efetiva de cisalhamento.\\
+\\
+
+
+
+$$\lambda = \frac{h}{t_w} = \frac{0.178/2}{0.0128} = 6.95$$
+\\
+$$\lambda_p = 1.1\sqrt{\frac{k_vE}{f_y}} = 1.1 * \sqrt{ \frac{1.2 * (199.948*10^9) } {344.7379*10^6 } } = 29.02$$
+\\
+$$\lambda_r = 1.37\sqrt{\frac{k_vE}{f_y}} = 1.37 * \sqrt{ \frac{1.2 * (199.948*10^9) } {344.7379*10^6 } } = 36.14$$
+\\
+$$V_{pl} = 0.6.A_w.f_y = 0.6 * 2 * (0.178* 0.0128) * (344.7379*10^6) = 942.5kN$$
+\\
+\\
+
+
+
+Como $\lambda = 6.95$ ; $\lambda_p = 29.02$ e $\lambda_r = 36.14$.
+\\
+Então $\lambda \leq \lambda_p$:
+$$V_{Rd} = \frac{V_pl}{\gamma_{a1}} = \frac{942.5}{1.1} = 856.9kN$$
+\\
+
+      
+
+\section{Resultados}
+\subsection{Verificação da Combinação Esforço Axial - Flexão Principal - Flexão Secundária}
+Conforme item 5.5.1.2 da NBR8800:2024, considerando que o perfil está sujeito a esforços axiais (de tração ou compressão) e momentos 
+nos dois eixos principais de inércia, a verificação deve atender as seguintes expressões:\\
+\\
+a) para $N_{Sd}/N_{Rd} \geq 0.2$:\\
+$$\frac{N_{Sd}}{N_{Rd}}+\frac{8}{9} \left(\frac{M_{x,Sd}}{M_{x,Rd}}+\frac{M_{y,Sd}}{M_{y,Rd}}\right) \leq 1.0$$
+\\ 
+b) para $N_{Sd}/N_{Rd} \textless 0.2$:\\
+$$\frac{N_{Sd}}{2N_{Rd}}+\left(\frac{M_{x,Sd}}{M_{x,Rd}}+\frac{M_{y,Sd}}{M_{y,Rd}}\right) \leq 1.0$$
+\\
+Onde:\\
+$N_{Sd}$ é a força axial solicitante de cálculo;\\
+$N_{Rd}$ é a força axial resistente de cálculo;\\
+$M_{x,Sd}$ e $M_{y,Sd}$ são os momentos fletores solicitantes de cálculo, respectivamente, em relação aos
+eixos x e y da seção transversal;\\
+$M_{x,Rd}$ e $M_{y,Rd}$ são os momentos fletores resistentes de cálculo, respectivamente, em relação aos
+eixos x e y da seção transversal.\\
+\\
+
+   
+
+
+Como $N_{Sd} = -0.26$ e $N_{Rd} = 331.0$, então $N_{Sd}/N_{Rd} = 0.001$.\\
+Sendo assim, $N_{Sd}/N_{Rd} \textless 0.2$ e, consequentemente:\\
+
+\vspace{0.3cm}
+
+$$\frac{N_{Sd}}{2N_{Rd}}+\left(\frac{M_{x,Sd}}{M_{x,Rd}}+\frac{M_{y,Sd}}{M_{y,Rd}}\right) \leq 1.0$$
+
+\vspace{0.3cm}
+
+$$\frac{-0.26}{2*331.0}+ \left(\frac{-194.24}{214.8}+\frac{-0.09}{65.2}\right) \leq 1.0$$
+
+\vspace{0.3cm}
+
+$$0.001/2+ \left(0.904+0.001\right) \leq 1.0$$
+
+\vspace{0.3cm}
+
+$$0.906 \leq 1.0$$
+\\
+
+
+
+O perfil está apto para resistir aos esforços solicitantes combinados.\\
+\\
+
+   
+
+\subsection{Verificação dos Esforços Cortantes}
+Conforme item 5.5.1.3 da NBR8800:2024, os casos onde a força cortante atuante na direção de um dos eixos centrais de inércia,
+a verificação da barra a esse esforço deve ser feita conforme 5.4.3 da NBR8800:2024. Esta verificaçao foi apresentada nos item 
+intitulados "Força Cortante Resistente de Cálculo" deste documento.\\
+Conforme item 5.4.1.3 da NBR8800:2024, o dimensionamento das barras submetidas a força cortante, deve ser
+atendida a seguinte condição:\\
+$$V_{Sd} \leq V_{Rd}$$
+\\
+Onde:\\
+$V_{Sd}$ é a força cortante solicitante de cálculo;\\
+$V_{Rd}$ é a força cortante resistente de cálculo, determinada conforme 5.4.3.\\
+\\
+\\
+
+
+
+Sendo assim, $V_{y,Sd} = 134.09$ e $V_{y,Rd} = 591.7$ são os esforços cortantes que atuam na direção paralela a alma do perfil.\\
+\vspace{0.3cm}
+\\
+
+
+
+A relação $V_{y,Sd} \leq V_{y,Rd}$ é atendida e a taxa de aproveitamento do perfil (razão $V_{y,Sd} / V_{y,Rd}$) é igual a 0.2266285.\\
+\\
+
+   
+
+Sendo assim, $V_{x,Sd} = 0.02$ e $V_{x,Rd} = 856.9$ são os esforços cortantes que atuam na direção transversal a alma do perfil.\\
+\vspace{0.3cm}
+\\
+
+
+
+A relação $V_{x,Sd} \leq V_{x,Rd}$ é atendida e a taxa de aproveitamento do perfil (razão $V_{x,Sd} / V_{x,Rd}$) é igual a 2.68e-05.\\
+\\
+
+   
+
+\section{Conclusão}
+O perfil metálico chamado \textit{VM-006}, a qual foi adotada a seção \textit{W410X60}, e na posição 7.5m encontra-se:\\
+\\
+
+
+
+a) APTO a resistir os esforços axiais e esforços de flexão nas duas direções, conforme detalhado no 
+item intitulado "Verificação da Combinação Esforço Axial - Flexão Principal - Flexão Secundária;\\
+\\
+
+   
+
+b) APTO a resistir os esforços cortantes na direção de flexão no eixo de maior inercia (direção paralela 
+a alma do perfil), conforme detalhado no item intitulado "Verificação dos Esforços Cortantes;\\
+\\
+
+   
+c) APTO a resistir os esforços cortantes na direção de flexão no eixo de menor inercia (direção paralela 
+as mesas do perfil), conforme detalhado no item intitulado "Verificação dos Esforços Cortantes;\\
+\\
+                                       
+\end{document}
+   
